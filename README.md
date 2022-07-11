@@ -6,6 +6,10 @@ This script collects grade data from the tables present on the performance and c
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+## Demo
+
+https://user-images.githubusercontent.com/35807384/178329639-8cb9222f-1ec2-482e-8ae6-fc758c7ddf65.mp4
+
 ## Prerequisites
 
 What things you need to install the software and how to install them
@@ -53,6 +57,10 @@ Esse script coleta dados de notas das tabelas presentes na página aproveitament
 ## Começando
 
 Essas instruções fornecerão a você uma cópia do projeto em execução em sua máquina local para fins de desenvolvimento e teste.
+
+## Demostração
+
+https://user-images.githubusercontent.com/35807384/178329639-8cb9222f-1ec2-482e-8ae6-fc758c7ddf65.mp4
 
 ## Pré-requisitos
 
