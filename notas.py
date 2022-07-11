@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 # Minha função
 from utils import ConvertTableToExcel
+import os
 
 url = "http://41.218.115.14/" # Endereço IP da Secretaria virtual
 aproveitamento = "Discentes/Secretaria/Aproveitamento.aspx" # Caminho para aproveitamento
@@ -24,12 +25,18 @@ delay = 3 # Atraso
 # Essa função tem a missão de pegar as notas de aproveitamento e classificação
 def PegarMinhasNotas(username, password):
 
+    os.system("cls")
+    os.system("color 0A")
+
     # Configurações
     option = webdriver.ChromeOptions() # Usar o Google Chrome
     option.headless = True # Abrir navegador no background
+    option.add_argument('--headless')
+    option.add_argument('--log-level=3')
+
     driver = webdriver.Chrome(options=option) # Inicializar nosso navegador
 
-    print("[*] Started!")
+    print("[*] Iniciado!")
 
     driver.get(url+"login.aspx") # Navegar para página de login
 
@@ -51,10 +58,10 @@ def PegarMinhasNotas(username, password):
 
     # Se encontrarmos essa mensagem de erro nos erros, o login falhou
     if any(error_message in e.text for e in errors):
-        print("[!] Login failed")
+        print("[!] Login falhou")
         driver.quit() # Sair do navegador
     else:
-        print("[+] Login successful")
+        print("[+] Login com sucesso")
 
         driver.get(url+aproveitamento) # Navegar para página de aproveitamento
 
@@ -73,4 +80,4 @@ def PegarMinhasNotas(username, password):
         ConvertTableToExcel(filename="classificações", elements= elements)
 
         driver.quit() # Sair do navegador
-        print("[+] All done")
+        print("[+] Tudo feito")

@@ -23,13 +23,19 @@ def ConvertTableToExcel(filename, elements):
         df_full = pd.read_html(str(table))[0]
 
         # Escrever o que está no DataFrame para o ficheiro xlsx
-        df_full.to_excel(writer, sheet_name='{0}º ano'.format(idx+1), index=False, na_rep='-')
+        if 'Ano' in df_full.columns:
+            df_full.to_excel(writer, sheet_name='{0} ano'.format(df_full['Ano'].values[0]), index=False, na_rep='-')
+        else:
+            df_full.to_excel(writer, sheet_name='{0}º ano'.format(idx+1), index=False, na_rep='-')
 
         # Ajuste automático da largura das colunas 
         for column in df_full:
             column_length = max(df_full[column].astype(str).map(len).max(), len(str(column)))
             col_idx = df_full.columns.get_loc(column)
-            writer.sheets['{0}º ano'.format(idx+1)].set_column(col_idx, col_idx, column_length+2)
+            if 'Ano' in df_full.columns:
+                writer.sheets['{0} ano'.format(df_full['Ano'].values[0])].set_column(col_idx, col_idx, column_length+2)
+            else:
+                writer.sheets['{0}º ano'.format(idx+1)].set_column(col_idx, col_idx, column_length+2)
             
     # Salvar as alterações no ficheiro xlsx
     writer.save()
